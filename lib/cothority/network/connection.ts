@@ -1,5 +1,5 @@
 import { Message, util } from "protobufjs/light";
-import shuffle from "shuffle-array";
+// import shuffle from "shuffle-array";
 import Logger from "../log";
 import { Roster } from "./proto";
 import { WebSocketAdapter } from "./websocket-adapter";
@@ -149,7 +149,7 @@ export class RosterWSConnection extends WebSocketConnection {
     /** @inheritdoc */
     async send<T extends Message>(message: Message, reply: typeof Message): Promise<T> {
         const addresses = this.addresses.slice();
-        shuffle(addresses);
+        // shuffle(addresses);
 
         const errors = [];
         for (const addr of addresses) {

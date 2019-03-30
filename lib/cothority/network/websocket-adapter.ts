@@ -1,4 +1,4 @@
-import * as WebSocket from "isomorphic-ws";
+import WebSocket from "isomorphic-ws";
 import Logger from "../log";
 
 
@@ -98,6 +98,7 @@ export class BrowserWebSocketAdapter extends WebSocketAdapter {
 
     /** @inheritdoc */
     send(bytes: Buffer): void {
+      console.log("sending");
         this.ws.send(bytes);
     }
 
