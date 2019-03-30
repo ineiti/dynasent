@@ -19,8 +19,8 @@ import {
     GetSignerCounters,
     GetSignerCountersResponse,
 } from "./proto/requests";
-import {InstanceID} from "~/lib/cothority/byzcoin/instance";
-import Long = require("long");
+import {InstanceID} from "./instance";
+import Long from "long";
 
 export const currentVersion = 1;
 

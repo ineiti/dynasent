@@ -3,6 +3,8 @@ import { Platform } from 'ionic-angular';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
+import {Buffer} from "buffer/";
+
 @Component({
   templateUrl: 'app.html'
 })

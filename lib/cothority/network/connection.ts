@@ -3,9 +3,11 @@ import shuffle from "shuffle-array";
 import Logger from "../log";
 import { Roster } from "./proto";
 import { WebSocketAdapter } from "./websocket-adapter";
-import {NativescriptWebSocketAdapter} from "~/lib/network/nativescript-ws";
+import { BrowserWebSocketAdapter } from "./websocket-adapter";
+// import {NativescriptWebSocketAdapter} from "~/lib/network/nativescript-ws";
 
-let factory: (path: string) => WebSocketAdapter = (path: string) => new NativescriptWebSocketAdapter(path);
+// let factory: (path: string) => WebSocketAdapter = (path: string) => new NativescriptWebSocketAdapter(path);
+let factory: (path: string) => WebSocketAdapter = (path: string) => new BrowserWebSocketAdapter(path);
 
 /**
  * Set the websocket generator. The default one is compatible
