@@ -1,17 +1,27 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Identity</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+  <h2>Welcome to DynaSent!</h2>
+  <p *ngIf="hasId">
+    Welcome to DynaSent! Now do something cool.
   </p>
+  <div *ngIf="!hasId">
   <p>
-    Take a look at the <code>pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
+    This is either a new device or you are completely new to DynaSent. Currently
+    you need to be signed up by somebody else.
   </p>
+    <form [formGroup]="form">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Input</ion-label>
+        <ion-input type="text" formControlName="x"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+  <button ion-button (click)="addID()">Add ID</button>
+  </div>
 </ion-content>

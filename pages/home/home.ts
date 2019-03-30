@@ -1,14 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  hasId = false;
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, 
+    private storage: Storage,
+    private zone: NgZone,
+    public formBuilder: FormBuilder
+    ) {
   }
 
+  form = this.formBuilder.group({
+    x: ['', Validators.required],
+  });
+
+  async addID(){
+    console.log("form is:");
+    console.dir(this.form);
+  }
 }
