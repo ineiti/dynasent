@@ -18,11 +18,11 @@ export class HomePage {
   }
 
   form = this.formBuilder.group({
-    x: ['', Validators.required],
+    id: [''],
   });
 
   async addID(){
     console.log("form is:");
-    console.dir(this.form);
+    console.log(this.form.controls["id"].value);
   }
 }
