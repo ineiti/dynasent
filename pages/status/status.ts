@@ -5,7 +5,7 @@ import { NavController } from 'ionic-angular';
   selector: 'page-status',
   templateUrl: 'status.html'
 })
-export class Status {
+export class StatusPage {
 
   constructor(public navCtrl: NavController) {
 
