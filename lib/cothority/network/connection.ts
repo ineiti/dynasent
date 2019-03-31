@@ -73,7 +73,6 @@ export class WebSocketConnection implements IConnection {
 
     /** @inheritdoc */
     async send<T extends Message>(message: Message, reply: typeof Message): Promise<any> {
-      Logger.print("sending 3");
         if (!message.$type) {
             return Promise.reject(new Error(`message "${message.constructor.name}" is not registered`));
         }
@@ -83,9 +82,8 @@ export class WebSocketConnection implements IConnection {
         }
 
         return new Promise((resolve, reject) => {
-          Logger.print("sending 22");
             const path = this.url + "/" + this.service + "/" + message.$type.name.replace(/.*\./, "");
-            Logger.print(`Socket: new WebSocket(${path})`, message);
+            Logger.lvl3(`Socket: new WebSocket(${path})`, message);
             const ws = factory(path);
             let bytes;
             if (message){
@@ -94,19 +92,16 @@ export class WebSocketConnection implements IConnection {
               bytes = Buffer.alloc(0);
             }
 
-            Logger.print("4");
             const timer = setTimeout(() => ws.close(4000, "timeout"), this.timeout);
 
-            Logger.print("5");
             ws.onOpen(() => {
-            Logger.print("6");
                 ws.send(bytes);
             });
 
             ws.onMessage((data: Buffer) => {
                 clearTimeout(timer);
                 const buf = Buffer.from(data);
-                Logger.print("Getting message with length:", buf.length);
+                Logger.lvl3("Getting message with length:", buf.length);
 
                 try {
                     const ret = reply.decode(buf) as T;

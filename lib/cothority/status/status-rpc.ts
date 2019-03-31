@@ -38,7 +38,6 @@ export default class StatusRPC {
 
         this.conn[index].setTimeout(this.timeout);
 
-        Log.print("getStatus");
         return this.conn[index].send(new StatusRequest(), StatusResponse);
     }
 }

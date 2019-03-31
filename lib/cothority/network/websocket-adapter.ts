@@ -58,7 +58,6 @@ export class BrowserWebSocketAdapter extends WebSocketAdapter {
 
     constructor(path: string) {
         super(path);
-        Logger.print("path is:", path);
         this.ws = new WebSocket(path);
         // to prevent the browser to use blob
         this.ws.binaryType = "arraybuffer";
@@ -73,7 +72,6 @@ export class BrowserWebSocketAdapter extends WebSocketAdapter {
     onMessage(callback: (data: Buffer) => void): void {
         this.ws.onmessage = (evt: { data: WebSocket.Data }): any => {
             if (evt.data instanceof Buffer || evt.data instanceof ArrayBuffer) {
-              Logger.print("got", evt.data);
                 callback(Buffer.from(evt.data));
             } else {
                 // In theory, any type of data could be sent through but we only
@@ -99,7 +97,6 @@ export class BrowserWebSocketAdapter extends WebSocketAdapter {
 
     /** @inheritdoc */
     send(bytes: Buffer): void {
-      console.log("sending");
         this.ws.send(bytes);
     }
 

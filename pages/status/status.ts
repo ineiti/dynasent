@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Defaults } from '../../lib/Defaults';
 import StatusRPC from '../../lib/cothority/status/status-rpc';
+import Log from "../../lib/cothority/log";
 
 @Component({
   selector: 'page-status',
@@ -14,7 +15,6 @@ export class StatusPage {
   }
 
   async ionViewWillEnter() {
-    console.log("entering status");
     this.nodes = [];
     let list = Defaults.Roster.list;
     let srpc = new StatusRPC(Defaults.Roster);
@@ -29,6 +29,10 @@ export class StatusPage {
       this.nodes.push(node);
     }
     this.nodes.sort();
+  }
+
+  async addByzCoin(){
+    Log.print("will start adding a new byzcoin");
   }
 
 }
