@@ -1,12 +1,12 @@
-import {FileIO} from "~/lib/FileIO";
-import {Roster} from "~/lib/cothority/network";
+import { FileIO } from "~/lib/FileIO";
+import { Roster } from "~/lib/cothority/network";
 
 const Buffer = require("buffer/").Buffer;
 
 export var Defaults = {
-    DataDir: "storage",
-    // Standard Roster for the app
-    RosterTOMLDEDIS: `
+  DataDir: "storage",
+  // Standard Roster for the app
+  RosterTOMLDEDIS: `
 [[servers]]
   Address = "tls://pop.dedis.ch:7772"
   Suite = "Ed25519"
@@ -28,9 +28,9 @@ export var Defaults = {
   Public = "1365232c84fb92f66bc003bff0bfb22250a99d6f3cecad4d6c53a64481486e93"
   Description = "Conode_4"
 `,
-    RosterTOMLLOCAL: `
+  RosterTOMLLOCAL: `
 [[servers]]
-  Address = "tls://192.168.0.1:7778"
+  Address = "tls://local.c4dt.org:7778"
   Suite = "Ed25519"
   Public = "a1104500cb49ddf49fb2dc27646d24ca617436d2ca21d96ba476667561693a35"
   Description = "Conode_5"
@@ -45,7 +45,7 @@ export var Defaults = {
       Public = "63887d3b06ebee95bca343ee1e3a9010218881fcc4ecc849c6f07764fedddab9381e9881c352c90c96a45aa0399dd8190896464394e19e95bb019b3bd423018e456777f8b17abb5d2e08b6a15157925e8f5114fbee3c9f50865be3b2623c5d066a512099fa2264c3acb75c74040cae0cadb9f49ccae71288fb524262beb228c4"
       Suite = "bn256.adapter"
 [[servers]]
-  Address = "tls://192.168.0.1:7776"
+  Address = "tls://local.c4dt.org:7776"
   Suite = "Ed25519"
   Public = "845a49a5eec9bf0d925cbf409f640056ee666511a17e20976eb471cbcc3d6ec7"
   Description = "Conode_4"
@@ -60,7 +60,7 @@ export var Defaults = {
       Public = "24b73271432ded23909a23452f0de4e0f4a3fd70fcf11200dd29f57795ea8d2b5523d3b1c1c8c0f53b75f7e6de1c049c6cba43ea208a708be9440b92fcfe7cf8514b8865fef8d0ebeca3ae2380902081f41e5ec4154b831c508cdce380291d6b3579318141a244049a6c8fe34254dc9d96724d9a9827a3e87a1a24e62cd0c893"
       Suite = "bn256.adapter"
 [[servers]]
-  Address = "tls://192.168.0.1:7774"
+  Address = "tls://local.c4dt.org:7774"
   Suite = "Ed25519"
   Public = "8cc0ad4a53bdd85949f660f2b86e7f82f70f25c6d257572dcb1d28840b7d05bc"
   Description = "Conode_3"
@@ -75,7 +75,7 @@ export var Defaults = {
       Public = "8b8de61b52e4c2deb78fbf3b393db659a71b240017b75eb3055e1a921a9371fc36cece682f8d89db06d4ed7090709bf97bfa2e354276bed63e7d35d70e916af38afe6728bbdcf9fd8e12f8d11dd8b9a7877748323cf04c26506ba2bf3e91f86d1a4fdcd5e5e638237e4cb982d0235faa0336efb36083686ceaa04fc1b6505103"
       Suite = "bn256.adapter"
 [[servers]]
-  Address = "tls://192.168.0.1:7772"
+  Address = "tls://local.c4dt.org:7772"
   Suite = "Ed25519"
   Public = "66a08a3ae1e8fe581047287cd83c04185caf3f9777b7528bbd0ee2504e5dd50c"
   Description = "Conode_2"
@@ -90,7 +90,7 @@ export var Defaults = {
       Public = "666e41560c9c155eab09702d5107a9de2f76fea80680a70f45daf6963df5f3948006143fe45a2f3d27e8fb79d7aa914ad9c23473b8aa373870e9c978838ce5ce6a3447d64ec66d0e3105778692a030724938cd2458dd34b1bc8118017cc120b42f5792c54690de8bb4410304a202045a5d702916faf33a074239093cb175368a"
       Suite = "bn256.adapter"
 [[servers]]
-  Address = "tls://192.168.0.1:7770"
+  Address = "tls://local.c4dt.org:7770"
   Suite = "Ed25519"
   Public = "76f642ce02a7360e4a3b5879ce2a6088ce2fc85d83a9ea0b0eb783bb524625c9"
   Description = "Conode_1"
@@ -105,47 +105,47 @@ export var Defaults = {
       Public = "55f45004e4d206f01723891a27e07ba93030edced3f2e20921108bc27517b67714d0743eef600a1a66799614c17615c40205c091aea0aeabbc46b83f199b167d0949835fa82b27702f4216744ab05e3fd279d2b7a7b1bcfd23104e669a462ad56358c6696de7cd7fc4cf2f5d7334e0a7848c5433b50aafbdf1a4dd72386d04fc"
       Suite = "bn256.adapter"
 `,
-    Roster: null,
-    // ByzCoinID
-    ByzCoinID: Buffer.from("aaa5b2db9523c5c66eedac22d878bc3d718d19f60d944004a53a9b977ed88ba3", 'hex'),
-    // SpawnerID is the instance the app can contact to create new instances. Because of circular dependencies, this
-    // cannot be an InstanceID.
-    SpawnerIID: Buffer.from("7dc459097579d6ce91f9a6c4ca3f4af6215036cc1e0e7d1dcf80e9c940b7e6a7", 'hex'),
-    // SpawnerIID: null,
+  Roster: null,
+  // ByzCoinID
+  ByzCoinID: Buffer.from("aaa5b2db9523c5c66eedac22d878bc3d718d19f60d944004a53a9b977ed88ba3", 'hex'),
+  // SpawnerID is the instance the app can contact to create new instances. Because of circular dependencies, this
+  // cannot be an InstanceID.
+  SpawnerIID: Buffer.from("7dc459097579d6ce91f9a6c4ca3f4af6215036cc1e0e7d1dcf80e9c940b7e6a7", 'hex'),
+  // SpawnerIID: null,
 
-    // - Testing settings - all settings here are set for the non-testing case. If testing == true, then the
-    // settings should be set in the below 'if'. This ensures that we don't forget any testing setting.
+  // - Testing settings - all settings here are set for the non-testing case. If testing == true, then the
+  // settings should be set in the below 'if'. This ensures that we don't forget any testing setting.
 
-    // Testing
-    Testing: true,
-    // If Confirm is false, there are no security confirmations asked. This is for
-    // easier UI testing.
-    Confirm: true,
-    // pre-loads polling stats for UI testing
-    PollPrechoice: false,
-    // Redirect pop.dedis.ch to another (local) IP
-    NetRedirect: null,
-    // Alias can be set to a non-"" value to have a default alias
-    Alias: "",
-    // TestButtons allow to delete everything
-    TestButtons: false,
-    // DataFile can be set to a string that will be used to overwrite the Data
-    DataFile: null,
-    // LoadTestStore
-    LoadTestStore: false,
+  // Testing
+  Testing: true,
+  // If Confirm is false, there are no security confirmations asked. This is for
+  // easier UI testing.
+  Confirm: true,
+  // pre-loads polling stats for UI testing
+  PollPrechoice: false,
+  // Redirect pop.dedis.ch to another (local) IP
+  NetRedirect: null,
+  // Alias can be set to a non-"" value to have a default alias
+  Alias: "",
+  // TestButtons allow to delete everything
+  TestButtons: false,
+  // DataFile can be set to a string that will be used to overwrite the Data
+  DataFile: null,
+  // LoadTestStore
+  LoadTestStore: false,
 };
 
 if (Defaults.Testing) {
-    Defaults.Roster = Roster.fromTOML(Defaults.RosterTOMLLOCAL);
-    // Defaults.Roster = Roster.fromTOML(Defaults.RosterTOMLDEDIS);
-    // Defaults.NetRedirect = ["pop.dedis.ch", "192.168.0.1"];
-    Defaults.Confirm = false;
-    Defaults.TestButtons = true;
-    Defaults.Alias = "testing";
-    Defaults.LoadTestStore = true;
-    // Defaults.Testing = false;
-    // Defaults.LoadTestStore = true;
-    // Defaults.DataFile = `{"alias":"org1","email":"","continuousScan":false,"personhoodPublished":false,"keyPersonhood":"9dcc44eb5a32451f6d0edba63ac9d849834fde15b27ef6a4f318b1b0cfe27901","keyIdentity":"0d5ad5ed78e6ef4dab9293310c4c8ea55dcd3bc35ae1c0f447fa0a8092709503","friends":[],"bcRoster":{"id":[151,195,72,202,74,214,92,203,166,112,171,211,214,119,158,152],"list":[{"public":{"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"id":[56,9,227,121,117,164,91,74,134,88,153,102,141,100,93,149],"address":"tls://192.168.0.1:7778","description":"Conode_4"},{"public":{"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"id":[56,9,227,121,117,164,91,74,134,88,153,102,141,100,93,149],"address":"tls://192.168.0.1:7776","description":"Conode_3"},{"public":{"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"id":[56,9,227,121,117,164,91,74,134,88,153,102,141,100,93,149],"address":"tls://192.168.0.1:7774","description":"Conode_2"},{"public":{"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"id":[56,9,227,121,117,164,91,74,134,88,153,102,141,100,93,149],"address":"tls://192.168.0.1:7772","description":"Conode_1"}],"aggregate":{"type":"Buffer","data":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}},"bcID":{"type":"Buffer","data":[112,137,67,235,4,85,107,84,89,252,28,242,254,245,3,170,74,201,111,206,99,32,21,22,29,182,67,193,52,193,105,190]},"darcInstance":{"type":"Buffer","data":[18,160,61,96,140,11,138,101,86,169,196,113,220,249,102,49,70,67,202,85,236,127,134,53,136,198,95,207,29,76,226,193]},"credentialInstance":{"type":"Buffer","data":[217,242,84,22,108,120,113,208,204,223,128,247,36,191,150,103,90,252,88,197,111,170,2,134,177,72,84,5,45,48,104,3]},"coinInstance":{"type":"Buffer","data":[17,99,174,47,0,69,241,116,185,204,159,151,51,106,209,8,120,160,120,98,160,131,218,102,205,79,235,206,188,66,253,87]},"spawnerInstance":{"type":"Buffer","data":[84,81,112,254,214,26,3,255,174,166,7,146,26,118,74,80,109,109,51,230,66,13,202,166,109,55,93,209,54,205,31,171]},"parties":[],"badges":[],"ropascis":[],"polls":[]}`;
+  Defaults.Roster = Roster.fromTOML(Defaults.RosterTOMLLOCAL);
+  // Defaults.Roster = Roster.fromTOML(Defaults.RosterTOMLDEDIS);
+  // Defaults.NetRedirect = ["pop.dedis.ch", "192.168.0.1"];
+  Defaults.Confirm = false;
+  Defaults.TestButtons = true;
+  Defaults.Alias = "testing";
+  Defaults.LoadTestStore = true;
+  // Defaults.Testing = false;
+  // Defaults.LoadTestStore = true;
+  // Defaults.DataFile = `{"alias":"org1","email":"","continuousScan":false,"personhoodPublished":false,"keyPersonhood":"9dcc44eb5a32451f6d0edba63ac9d849834fde15b27ef6a4f318b1b0cfe27901","keyIdentity":"0d5ad5ed78e6ef4dab9293310c4c8ea55dcd3bc35ae1c0f447fa0a8092709503","friends":[],"bcRoster":{"id":[151,195,72,202,74,214,92,203,166,112,171,211,214,119,158,152],"list":[{"public":{"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"id":[56,9,227,121,117,164,91,74,134,88,153,102,141,100,93,149],"address":"tls://192.168.0.1:7778","description":"Conode_4"},{"public":{"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"id":[56,9,227,121,117,164,91,74,134,88,153,102,141,100,93,149],"address":"tls://192.168.0.1:7776","description":"Conode_3"},{"public":{"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"id":[56,9,227,121,117,164,91,74,134,88,153,102,141,100,93,149],"address":"tls://192.168.0.1:7774","description":"Conode_2"},{"public":{"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"id":[56,9,227,121,117,164,91,74,134,88,153,102,141,100,93,149],"address":"tls://192.168.0.1:7772","description":"Conode_1"}],"aggregate":{"type":"Buffer","data":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}},"bcID":{"type":"Buffer","data":[112,137,67,235,4,85,107,84,89,252,28,242,254,245,3,170,74,201,111,206,99,32,21,22,29,182,67,193,52,193,105,190]},"darcInstance":{"type":"Buffer","data":[18,160,61,96,140,11,138,101,86,169,196,113,220,249,102,49,70,67,202,85,236,127,134,53,136,198,95,207,29,76,226,193]},"credentialInstance":{"type":"Buffer","data":[217,242,84,22,108,120,113,208,204,223,128,247,36,191,150,103,90,252,88,197,111,170,2,134,177,72,84,5,45,48,104,3]},"coinInstance":{"type":"Buffer","data":[17,99,174,47,0,69,241,116,185,204,159,151,51,106,209,8,120,160,120,98,160,131,218,102,205,79,235,206,188,66,253,87]},"spawnerInstance":{"type":"Buffer","data":[84,81,112,254,214,26,3,255,174,166,7,146,26,118,74,80,109,109,51,230,66,13,202,166,109,55,93,209,54,205,31,171]},"parties":[],"badges":[],"ropascis":[],"polls":[]}`;
 } else {
-    Defaults.Roster = Roster.fromTOML(Defaults.RosterTOMLDEDIS);
+  Defaults.Roster = Roster.fromTOML(Defaults.RosterTOMLDEDIS);
 }

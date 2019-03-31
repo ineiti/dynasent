@@ -1,6 +1,7 @@
 import { IConnection, WebSocketConnection } from "../network/connection";
 import { Roster } from "../network/proto";
 import { StatusRequest, StatusResponse } from "./proto";
+import Log from "../log";
 
 /**
  * RPC to talk with the status service of the conodes
@@ -37,6 +38,7 @@ export default class StatusRPC {
 
         this.conn[index].setTimeout(this.timeout);
 
+        Log.print("getStatus");
         return this.conn[index].send(new StatusRequest(), StatusResponse);
     }
 }
