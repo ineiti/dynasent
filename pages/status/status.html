@@ -1,11 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Status
-    </ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>
+			Status
+		</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+	<ul>
+		<li *ngFor="let node of nodes">
+			{{ node }}
+		</li>
+	</ul>
 </ion-content>
