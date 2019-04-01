@@ -1,4 +1,5 @@
 // import {Contact} from "Contact";
+import { Storage } from '@ionic/storage';
 
 export class Contact {
   static fromJSON(s: string): Contact{
@@ -19,18 +20,23 @@ export class Contact {
 }
 
 export class User extends Contact{
-  static async fromStorage(s: Storage): Promise<User>{
-    let uJS = JSON.parse(await s.getItem('user'));
-    let u = new User(s);
-    u.alias = uJS.alias;
-    return u;
-  }
+  public storage: Storage;
 
-  constructor(private storage: Storage){
+  constructor(){
     super();
   }
 
-  async save(){
+  async load(s: Storage): Promise<any>{
+    this.storage = s;
+    let uJS = JSON.parse(await s.get('user'));
+    if (uJS){
+      this.alias = uJS.alias;
+    }
+  }
 
+  async save(){
+    await this.storage.set('user', JSON.stringify(this));
   }
 }
+
+export let gUser = new User();
