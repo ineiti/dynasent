@@ -6,13 +6,19 @@ import Log from '../../lib/cothority/log';
 import StatusRPC from '../../lib/cothority/status/status-rpc';
 import {Roster} from '../../lib/cothority/network/proto';
 import {Defaults} from '../../lib/Defaults';
+import {User} from '../../lib/User';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  user: User;
   hasId = false;
+  hasPersonal = false;
+  hasProtected = false;
+  accesses = [];
+  requests = [];
 
   constructor(public navCtrl: NavController, 
     private storage: Storage,
@@ -21,15 +27,24 @@ export class HomePage {
     ) {
   }
 
+  async ionViewWillEnter() {
+      this.storage.get('hasId').then(hi => {
+        this.hasId = hi;
+      })
+  }
+
   form = this.formBuilder.group({
     id: [''],
   });
 
   async addID(){
-    Log.print("log rulez!");
-    let srpc = new StatusRPC(Defaults.Roster);
-    Log.print(await srpc.getStatus());
-    console.log("form is:");
-    console.log(this.form.controls["id"].value);
+    this.hasId = true;
+    await this.storage.set('hasId', true);
+  }
+}
+
+export class Request {
+  constructor(public source: string){
+
   }
 }

@@ -6,13 +6,34 @@
 
 <ion-content padding>
   <h2>Welcome to DynaSent!</h2>
-  <p *ngIf="hasId">
-    Welcome to DynaSent! Now do something cool.
-  </p>
+  <div *ngIf="hasId">
+    <p>
+    Here is an overview of your account:
+    </p>
+    <ul>
+      <li>Public details: {{ hasPersonal ? 'set' : 'missing' }}</li>
+      <li>Protected details: {{ hasProtected ? 'set' : 'missing' }}</li>
+      <li>Protected access: 
+       	<ul>
+      		<li *ngFor="let access of accesses">
+			      {{ access }}
+		      </li>
+	      </ul>
+      </li>
+      <li *ngIf="requests.length > 0">
+        <ul>
+          <li *ngFor="let request of requests">
+            {{ request.source }}
+            <button ion-button (click)="handleRequest(true, request)">Accept</button>
+            <button ion-button (click)="handleRequest(false, request)">Deny</button>
+        </ul>
+      </li>
+    </ul>
+  </div>
   <div *ngIf="!hasId">
   <p>
-    This is either a new device or you are completely new to DynaSent. Currently
-    you need to be signed up by somebody else.
+    This is either a new device or you are completely new to DynaSent. Please enter the
+    code you got to sign up as a new user.
   </p>
     <form [formGroup]="form">
     <ion-list>

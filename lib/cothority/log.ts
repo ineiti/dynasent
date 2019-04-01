@@ -73,6 +73,45 @@ export class Logger {
         this.printLvl(-7, args);
     }
 
+    catch(e, ...args) {
+        let errMsg = e;
+        if (e.message) {
+            errMsg = e.message;
+        }
+        if (e.stack) {
+            for (let i = 1; i < e.stack.split("\n").length; i++) {
+                if (i > 1) {
+                    errMsg = "";
+                }
+                console.log("C : " + this.printCaller(e, i) + " -> (" + errMsg + ") " +
+                    this.joinArgs(args));
+            }
+        } else {
+            console.log("C : " + this.printCaller(e, 1) + " -> (" + errMsg + ") " +
+                this.joinArgs(args));
+        }
+    }
+
+    rcatch(e, ...args): Promise<any> {
+        let errMsg = e;
+        if (e.message) {
+            errMsg = e.message;
+        }
+        if (e.stack) {
+            for (let i = 1; i < e.stack.split("\n").length; i++) {
+                if (i > 1) {
+                    errMsg = "";
+                }
+                console.log("C : " + this.printCaller(e, i) + " -> (" + errMsg + ") " +
+                    this.joinArgs(args));
+            }
+        } else {
+            console.log("C : " + this.printCaller(e, 1) + " -> (" + errMsg + ") " +
+                this.joinArgs(args));
+        }
+        return Promise.reject(errMsg.toString().replace(/Error: /, ""));
+    }
+
     private joinArgs(args: any[]) {
         return args.map((a) => {
             if (typeof a === "string") {

@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Defaults } from '../../lib/Defaults';
 import StatusRPC from '../../lib/cothority/status/status-rpc';
 import Log from "../../lib/cothority/log";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-status',
@@ -11,7 +12,8 @@ import Log from "../../lib/cothority/log";
 export class StatusPage {
   nodes = [];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+      private storage: Storage) {
   }
 
   async ionViewWillEnter() {
@@ -33,6 +35,10 @@ export class StatusPage {
 
   async addByzCoin(){
     Log.print("will start adding a new byzcoin");
+  }
+
+  async reset(){
+    await this.storage.set('hasId', false);
   }
 
 }
